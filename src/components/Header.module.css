@@ -1,0 +1,14 @@
+.header {
+   background-color: #202024;
+   color: #fff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 0.9375rem;
+   padding: 1.25rem 0;
+}
+
+.header img {
+   height: 2rem;
+   width: auto;
+}
