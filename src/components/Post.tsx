@@ -1,8 +1,9 @@
 import { format, formatDistanceToNow } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR'
+import { v4 as uuidv4 } from 'uuid'
 
 import { Avatar } from './Avatar'
-import { Comment } from './Comment'
+import { Comment, CommentType } from './Comment'
 import styles from './Post.module.css'
 import { LinkComponent } from './LinkComponent';
 import { FormEvent, ChangeEvent, useState, InvalidEvent } from 'react';
@@ -41,14 +42,22 @@ export function Post({ post }: PostProps) {
    })
 
    const [comments, setComments] = useState([
-      'Post muito banaca hein?'
+      {
+         id: '1cy25d4-59a1-452f-839e-129df0b6c28d',
+         content: 'Post muito banaca hein?'
+      }
    ])
 
    const [newCommentText, setNewCommentText] = useState('')
 
    function handleCreateNewComment(event: FormEvent) {
       event.preventDefault()
-      setComments([...comments, newCommentText])
+      const uniqueId = uuidv4()
+
+      setComments([...comments, {
+         id: uniqueId,
+         content: newCommentText
+      }])
       setNewCommentText('')
    }
 
@@ -61,9 +70,9 @@ export function Post({ post }: PostProps) {
       event.target.setCustomValidity('Esse campo é obrigatório')
    }
 
-   function deleteComment(commentToDelete: string) {
+   function deleteComment(commentToDelete: CommentType) {
       const commentWithoutDeletedOne = comments.filter(comment => {
-         return comment !== commentToDelete
+         return comment.id !== commentToDelete.id
       })
       setComments(commentWithoutDeletedOne)
    }
@@ -131,8 +140,8 @@ export function Post({ post }: PostProps) {
                {comments.map(comment => {
                   return (
                      <Comment
-                        key={comment}
-                        content={comment}
+                        key={comment.id}
+                        comment={comment}
                         onDeleteComment={deleteComment}
                      />
                   )

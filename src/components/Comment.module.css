@@ -3,6 +3,7 @@
    display: flex;
    gap: 1rem;
 }
+
 .comment img {
    width: 3rem;
    height: 3rem;
@@ -34,6 +35,7 @@
    border-radius: 2px;
    transition: color 0.1s, background-color 0.1s;
 }
+
 .comment .commentContent header button:hover,
 .comment .commentContent header button:focus {
    color: var(--red-500);
@@ -48,6 +50,7 @@
    font-size: 0.875rem;
    line-height: 1.6;
 }
+
 .comment .commentContent .authorAndTime time {
    font-size: 0.75rem;
    line-height: 1.6;
@@ -72,6 +75,7 @@
    align-items: center;
    transition: color 0.1s, background-color 0.1s;
 }
+
 .commentBox footer button svg {
    margin-right: 0.5rem;
 }
